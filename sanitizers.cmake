@@ -45,6 +45,8 @@ function (add_sanitizers)
             target_link_options(enable_sanitizers 
                 INTERFACE ${address_sanitizer_flags}
             )
+
+            message (STATUS "Address sanitizer: enabled")
         endif()
 
         if (ENABLE_LSAN)
@@ -62,6 +64,7 @@ function (add_sanitizers)
             target_link_options(enable_sanitizers 
                 INTERFACE ${leak_sanitizer_flags}
             )
+            message (STATUS "Leak sanitizer: enabled")
         endif ()
 
         if (ENABLE_UBSAN)
@@ -76,6 +79,8 @@ function (add_sanitizers)
             target_link_options(enable_sanitizers 
                 INTERFACE ${undefined_sanitizer_flags}
             )
+
+            message (STATUS "Undefined behaviour sanitizer: enabled")
         endif ()
 
         if (ENABLE_TSAN)
@@ -93,6 +98,8 @@ function (add_sanitizers)
             target_link_options(enable_sanitizers 
                 INTERFACE ${thread_sanitizer_flags}
             )
+
+            message (STATUS "Thread sanitizer: enabled")
         endif ()
 
         if (ENABLE_MSAN)
@@ -118,7 +125,8 @@ function (add_sanitizers)
             target_link_options(enable_sanitizers 
                 INTERFACE ${memory_sanitizer_flags}
             )
-  
+            
+            message (STATUS "Memory sanitizer: enabled")
         endif()
     endif ()
 endfunction ()
