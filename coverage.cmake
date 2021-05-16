@@ -38,7 +38,7 @@ function (add_coverage)
         
         add_custom_target (run_lcov 
             COMMAND 
-                ${lcov_exe} --capture --directory ${PROJECT_SOURCE_DIR} --output-file ${PROJECT_BINARY_DIR}/coverage/lcov.info
+                ${lcov_exe} --capture --directory ${PROJECT_SOURCE_DIR} --output-file ${PROJECT_BINARY_DIR}/lcov.info
             COMMAND 
             ${lcov_exe} -r ${PROJECT_BINARY_DIR}/lcov.info '*test/*' '/usr/include/*'
         )
