@@ -64,6 +64,7 @@ function (add_sanitizers)
             target_link_options(enable_sanitizers 
                 INTERFACE ${leak_sanitizer_flags}
             )
+
             message (STATUS "Leak sanitizer: enabled")
         endif ()
 
