@@ -14,6 +14,8 @@ function (add_coverage)
                 -O0
                 -g 
                 --coverage 
+                -fno-exceptions 
+                -fno-inline
         ) 
 
         target_link_options (coverage_flags 
