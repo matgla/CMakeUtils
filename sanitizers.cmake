@@ -3,6 +3,7 @@
 # See LICENSE file in the project root for details.
 
 function (add_sanitizers)
+  if (NOT enable_sanitizers)
     add_library(enable_sanitizers INTERFACE) 
 
     if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
@@ -118,5 +119,6 @@ function (add_sanitizers)
             message (STATUS "Memory sanitizer: enabled")
         endif()
     endif ()
+  endif ()
 endfunction ()
 

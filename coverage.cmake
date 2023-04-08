@@ -3,7 +3,7 @@
 # See LICENSE file in the project root for details.
  
 function (add_coverage)
-
+  if (NOT coverage_flags)
     add_library (coverage_flags INTERFACE)
 
     option (ENABLE_COVERAGE "Enable code coverage measurement" FALSE)
@@ -32,9 +32,7 @@ function (add_coverage)
             COMMAND 
               ${lcov_exe} -r ${PROJECT_BINARY_DIR}/lcov.info '*test/*' '/usr/include/*' --output-file ${PROJECT_BINARY_DIR}/lcov.info
         )
-
-
     endif ()
-
+  endif ()
 endfunction()
 
