@@ -3,7 +3,7 @@
 # See LICENSE file in the project root for details.
  
 function (add_coverage)
-  if (NOT coverage_flags)
+  if (NOT TARGET coverage_flags)
     add_library (coverage_flags INTERFACE)
 
     option (ENABLE_COVERAGE "Enable code coverage measurement" FALSE)
