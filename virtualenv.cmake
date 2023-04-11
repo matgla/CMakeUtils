@@ -3,6 +3,7 @@
 # See LICENSE file in the project root for details.
 
 function (create_virtualenv venv_name requirements working_directory)
+    message (STATUS "Adding virtualenv: ${venv_name}") 
     file (GLOB virtualenv_file_stamp ${working_directory}/${venv_name}/virtualenv_file.stamp)
     file (MAKE_DIRECTORY ${working_directory})
     if (NOT virtualenv_file_stamp)
