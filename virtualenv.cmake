@@ -3,7 +3,7 @@
 # See LICENSE file in the project root for details.
 
 function (create_virtualenv venv_name requirements working_directory)
-    file (GLOB virtualenv_file_stamp ${working_directory}/virtualenv_file.stamp)
+    file (GLOB virtualenv_file_stamp ${working_directory}/${venv_name}/virtualenv_file.stamp)
     file (MAKE_DIRECTORY ${working_directory})
     if (NOT virtualenv_file_stamp)
         find_package(PythonInterp REQUIRED)
@@ -34,7 +34,7 @@ function (create_virtualenv venv_name requirements working_directory)
         )
 
         execute_process(
-            COMMAND cmake -E touch ${working_directory}/virtualenv_file.stamp
+            COMMAND cmake -E touch ${working_directory}/${venv_name}/virtualenv_file.stamp
             WORKING_DIRECTORY ${working_directory}
             COMMAND_ERROR_IS_FATAL ANY
         )

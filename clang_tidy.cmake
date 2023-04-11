@@ -7,12 +7,12 @@ function (add_clang_tidy filter_files)
     message(STATUS "Clang Tidy is enabled")
     include(virtualenv)
 
-    setup_virtualenv(clang_tidy_venv ${CMAKE_CURRENT_SOURCE_DIR}/requirements.txt ${CMAKE_CURRENT_BINARY_DIR}/venvs)
+    setup_virtualenv(clang_tidy ${CMAKE_CURRENT_SOURCE_DIR}/requirements.txt ${CMAKE_CURRENT_BINARY_DIR}/venvs)
 
     find_program(RUN_CLANG_TIDY_EXE NAMES "run-clang-tidy" REQUIRED)
 
     add_custom_target(filter_compile_commands
-      COMMAND ${CMAKE_CURRENT_BINARY_DIR}/clang_tidy/venv/bin/compile-commands --filter_files=${suppression}
+      COMMAND ${clang_tidy_python_executable} -m compile-commands --filter_files=${suppression}
       WORKING_DIRECTORY
         ${CMAKE_CURRENT_BINARY_DIR}
     )
