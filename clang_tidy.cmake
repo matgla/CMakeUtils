@@ -5,7 +5,7 @@
 function (add_clang_tidy filter_files)
   if (NOT TARGET run_clang_tidy)
     message(STATUS "Clang Tidy is enabled")
-    include(virtualenv.cmake)
+    include(virtualenv)
 
     setup_virtualenv(clang_tidy_venv ${CMAKE_CURRENT_SOURCE_DIR}/requirements.txt ${CMAKE_CURRENT_BINARY_DIR}/venvs)
 
