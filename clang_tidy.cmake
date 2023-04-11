@@ -2,12 +2,14 @@
 # Licensed under the MIT license. 
 # See LICENSE file in the project root for details.
 
+set (current_source_dir ${CMAKE_CURRENT_LIST_DIR})
+
 function (add_clang_tidy filter_files)
   if (NOT TARGET run_clang_tidy)
     message(STATUS "Clang Tidy is enabled")
-    include(${CMAKE_CURRENT_LIST_DIR}/virtualenv.cmake)
+    include(${current_source_dir}/virtualenv.cmake)
 
-    setup_virtualenv(clang_tidy ${CMAKE_CURRENT_LIST_DIR}/requirements.txt ${CMAKE_CURRENT_BINARY_DIR}/venvs)
+    create_virtualenv(clang_tidy ${current_source_dir}/requirements.txt ${CMAKE_CURRENT_BINARY_DIR}/venvs)
 
     find_program(RUN_CLANG_TIDY_EXE NAMES "run-clang-tidy" REQUIRED)
 
