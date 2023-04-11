@@ -13,8 +13,11 @@ function (add_clang_tidy filter_files)
 
     find_program(RUN_CLANG_TIDY_EXE NAMES "run-clang-tidy" REQUIRED)
 
+    set (filtering_command ${clang_tidy_binary_dir}/compile-commands -v --filter_files='${filter_files}' --files ${PROJECT_SOURCE_DIR}/compile_commands.json)
+
+    message(STATUS "Filtering command: ${filtering_command}")
     add_custom_target(filter_compile_commands
-      COMMAND ${clang_tidy_binary_dir}/compile-commands --files ${PROJECT_SOURCE_DIR}/compile_commands.json --filter_files=${suppression}
+      COMMAND ${filtering_command}
       WORKING_DIRECTORY
         ${CMAKE_CURRENT_BINARY_DIR}
     )
