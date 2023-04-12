@@ -13,7 +13,7 @@ function (add_clang_tidy filter_files)
 
     find_program(RUN_CLANG_TIDY_EXE NAMES "run-clang-tidy" REQUIRED)
 
-    set (filtering_command ${clang_tidy_binary_dir}/compile-commands -v --filter_files='${filter_files}' --files ${PROJECT_SOURCE_DIR}/compile_commands.json)
+    set (filtering_command ${clang_tidy_binary_dir}/compile-commands -v --filter_files='${filter_files}' --files ${PROJECT_BINARY_DIR}/compile_commands.json)
 
     message(STATUS "Filtering command: ${filtering_command}")
     add_custom_target(filter_compile_commands
@@ -25,6 +25,7 @@ function (add_clang_tidy filter_files)
     cmake_host_system_information(RESULT cpus QUERY NUMBER_OF_LOGICAL_CORES)
     add_custom_target(run_clang_tidy
       DEPENDS filter_compile_commands 
+      COMMAND cp ${PROJECT_BINARY_DIR}/compile-commands.json ${PROJECT_SOURCE_DIR}/compile-commands.json
       COMMAND ${RUN_CLANG_TIDY_EXE} -p ${PROJECT_SOURCE_DIR} -j${cpus}
       VERBATIM
     )
