@@ -29,14 +29,9 @@ function (add_clang_tidy filter_files)
       VERBATIM
     )
 
-    add_custom_command(OUTPUT clang_tidy_report.txt 
+    add_custom_target(run_clang_tidy_for_sonar
       COMMAND ${RUN_CLANG_TIDY_EXE} -p ${PROJECT_SOURCE_DIR} -j${cpus} > clang_tidy_report.txt
       DEPENDS filter_compile_commands 
-      VERBATIM 
-    )
-
-    add_custom_target(run_clang_tidy_for_sonar
-      DEPENDS clang_tidy_report.txt 
       VERBATIM
     )
   endif ()
