@@ -18,7 +18,7 @@ function (add_clang_tidy filter_files)
     message(STATUS "Filtering command: ${filtering_command}")
     add_custom_target(filter_compile_commands
       COMMAND ${filtering_command}
-      COMMAND cp ${PROJECT_BINARY_DIR}/compile_commands.json ${PROJECT_SOURCE_DIR}/compile_commands.json
+      COMMAND cp -n ${PROJECT_BINARY_DIR}/compile_commands.json ${PROJECT_SOURCE_DIR}/compile_commands.json
       WORKING_DIRECTORY
         ${CMAKE_CURRENT_BINARY_DIR}
     )
